@@ -55,10 +55,18 @@ pipeline {
 
     post {
         success {
-            emailext body: 'The pipeline succeeded!', subject: 'Pipeline Success', to: 'your-email@example.com'
+            emailext (
+                subject: 'Pipeline Success: ${JOB_NAME} - Build #${BUILD_NUMBER}',
+                body: 'The pipeline succeeded! Check the build details at: ${BUILD_URL}',
+                to: 'anmol4762.be23@chitkara.edu.in' 
+            )
         }
         failure {
-            emailext body: 'The pipeline failed!', subject: 'Pipeline Failure', to: 'your-email@example.com'
+            emailext (
+                subject: 'Pipeline Failed: ${JOB_NAME} - Build #${BUILD_NUMBER}',
+                body: 'The pipeline failed! Check the build details at: ${BUILD_URL}',
+                to: 'anmol4762.be23@chitkara.edu.in' 
+            )
         }
     }
 }
